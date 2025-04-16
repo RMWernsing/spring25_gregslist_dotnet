@@ -73,4 +73,29 @@ public class HousesRepository
     }).ToList();
     return houses;
   }
+
+  internal void UpdateHouse(House house)
+  {
+    string sql = @"
+    UPDATE houses
+    SET
+    sqft = @Sqft,
+    bedrooms = @Bedrooms,
+    bathrooms = @Bathrooms,
+    img_url = @ImgUrl,
+    description = @Description,
+    price = @Price
+    WHERE id = @ID
+    LIMIT 1;";
+
+    int rowsAffected = _db.Execute(sql, house);
+    if (rowsAffected == 0)
+    {
+      throw new Exception("YOU DID NOT UPDATED ANY ROWS FORM THE DATABASE");
+    }
+    if (rowsAffected > 1)
+    {
+      throw new Exception("YOU UPDATED MORE THAN ONE LINE WHICH WAS MOST LIKELY UNINTENTIONAL. PLEASE CHECK YOUR DATA FOR CHANGES");
+    }
+  }
 }

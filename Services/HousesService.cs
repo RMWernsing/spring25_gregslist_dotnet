@@ -43,4 +43,23 @@ public class HousesService
     List<House> houses = _repository.GetHouses();
     return houses;
   }
+
+  internal House UpdateHouse(Account userInfo, House houseData, int houseId)
+  {
+    House house = GetHouseById(houseId);
+    if (house.CreatorId != userInfo.Id)
+    {
+      throw new Exception("YOU CANNOT UPDATE SOMEONE ELSES HOUSE INFORMATION");
+    }
+    house.Sqft = houseData.Sqft ?? house.Sqft;
+    house.Bedrooms = houseData.Bedrooms ?? house.Bedrooms;
+    house.Bathrooms = houseData.Bathrooms ?? house.Bathrooms;
+    house.ImgUrl = houseData.ImgUrl ?? house.ImgUrl;
+    house.Description = houseData.Description ?? house.Description;
+    house.Price = houseData.Price ?? house.Price;
+
+    _repository.UpdateHouse(house);
+    return house;
+
+  }
 }
