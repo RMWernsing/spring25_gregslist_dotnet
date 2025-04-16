@@ -18,5 +18,8 @@
     "titleBar.inactiveBackground": "#67de0f99",
     "titleBar.inactiveForeground": "#15202b99"
   },
-  "peacock.color": "#67de0f"
+  "peacock.color": "#67de0f",
+  "cSpell.words": [
+    "Sqft"
+  ]
 }
