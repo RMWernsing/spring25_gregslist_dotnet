@@ -17,6 +17,17 @@ public class HousesService
     return house;
   }
 
+  internal string DeleteHouse(int houseId, Account userInfo)
+  {
+    House house = GetHouseById(houseId);
+    if (house.CreatorId != userInfo.Id)
+    {
+      throw new Exception($"{userInfo.Name.ToUpper()}, YOU DO NOT HAVE PERMISSION TO DELETE A POST {house.Creator.Name.ToUpper()}!!! THE POLICE HAVE BEEN NOTIFIED AND YOU WILL BE HELD ACCOUNTABLE 🚓🚓🚓");
+    }
+    _repository.DeleteHouse(houseId);
+    return $"{house.Creator.Name}, your house has been successfully deleted";
+  }
+
   internal House GetHouseById(int houseId)
   {
     House house = _repository.GetHouseById(houseId);

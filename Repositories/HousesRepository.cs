@@ -1,6 +1,7 @@
 
 
 
+
 namespace gregslist_dotnet.Repositories;
 
 
@@ -31,6 +32,20 @@ public class HousesRepository
       return house;
     }, houseData).SingleOrDefault();
     return house;
+  }
+
+  internal void DeleteHouse(int houseId)
+  {
+    string sql = "DELETE FROM houses WHERE id = @houseId LIMIT 1;";
+    int rowsAffected = _db.Execute(sql, new { houseId });
+    if (rowsAffected == 0)
+    {
+      throw new Exception("Nothing has been deleted");
+    }
+    if (rowsAffected > 1)
+    {
+      throw new Exception("You have deleted more than one house which is assumed to be unintentional. please check and see if any data is missing");
+    }
   }
 
   internal House GetHouseById(int houseId)
