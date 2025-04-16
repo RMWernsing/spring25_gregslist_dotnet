@@ -1,4 +1,5 @@
 
+
 namespace gregslist_dotnet.Services;
 
 public class HousesService
@@ -8,6 +9,16 @@ public class HousesService
   public HousesService(HousesRepository repository)
   {
     _repository = repository;
+  }
+
+  internal House GetHouseById(int houseId)
+  {
+    House house = _repository.GetHouseById(houseId);
+    if (house == null)
+    {
+      throw new Exception($"Invalid House Id: {houseId}");
+    }
+    return house;
   }
 
   internal List<House> GetHouses()

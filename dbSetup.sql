@@ -74,7 +74,7 @@ CREATE TABLE houses(
 );
 
 INSERT INTO houses (sqft, bedrooms, bathrooms, img_url, description, price, creator_id)
-VALUES(2500, 4, 2, "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "Colonial house, friendly quiet neighborhood, leaky roof", 1000000, "67d34fd816cbbe8474c4cd66")
+VALUES(5000, 5, 4, "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "very fun house with a lot of things that are great", 1000000, "67d34fd816cbbe8474c4cd66")
 
 SELECT * FROM houses INNER JOIN accounts ON accounts.id = houses.creator_id;
 
